@@ -16,7 +16,7 @@
 - Должна быть функция построения маршрутов пользователей в системе.
 
 ## Диаграмма вариантов использования
-<p align="center"><img src="https://github.com/YusupovIlya/Software_architecture/blob/LabWork1/docs/LR1%20Diagram.jpg"></p>
+<p align="center"><img src="https://github.com/YusupovIlya/Software_architecture/blob/LabWork1/Lab%20Work%20%E2%84%961/docs/LR1%20Diagram.jpg"></p>
 
 ## Перечень сделанных предположений
 - У заказчика сильно ограничены ресуры, которые он готов выделить под сервис логирования.
