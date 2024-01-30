@@ -1,13 +1,12 @@
 # Документация по API
 
-Версия API: 1.0
+### [ТЕСТИРОВАНИЕ API](https://github.com/YusupovIlya/Software_architecture/blob/LabWork4/Lab%20Work%20%E2%84%964/docs/API%20TEST%20RESULTS.md)
 
 ## Ресурс stream-data/schemas
 Данный ресурс предоставляет методы для создания потоков данных - таблиц в базе, которые могут иметь разный набор свойств для хранения логов.
-### `ССЫЛКА НА РЕАЛИЗАЦИЮ`
+### [ССЫЛКА НА РЕАЛИЗАЦИЮ](https://github.com/YusupovIlya/Software_architecture/blob/LabWork4/Lab%20Work%20%E2%84%964/src/Logging.Service.WebApi/Controllers/StreamDataSchemasController.cs)
 
 ## Методы
-
 
 ### 1. Получение схемы данных потока
 - **URI**: /api/cl/stream-data/schemas/{streamId}
@@ -22,7 +21,7 @@
 | Свойство | Тип                                            | Описание                           |
 |----------|------------------------------------------------|------------------------------------|
 | streamId | integer (format: int64)                        | Идентификатор потока               |
-| columns  | Array of StreamDataSchemaColumnViewModel (nullable) | Массив моделей колонок схемы потока |
+| columns  | Array of StreamDataSchemaColumnViewModel (nullable) | Массив моделей - колонок схемы потока |
 
 ### Модель StreamDataSchemaColumnViewModel
 
@@ -30,7 +29,7 @@
 |-------------|----------------------------------------|--------------------------------------|
 | name        | string (nullable)                      | Имя колонки                          |
 | type        | StreamDataSchemaColumnType (enum)      | Тип колонки                          |
-| elementType | StreamDataSchemaColumnType (enum, nullable) | Тип элемента для коллекционных типов |
+| elementType | StreamDataSchemaColumnType (enum, nullable) | Тип элемента в коллекции |
 | defaultValue| string (nullable)                      | Значение по умолчанию для колонки    |
 
 ### Enum StreamDataSchemaColumnType
@@ -46,7 +45,7 @@
 | `4`      | Date - Дата.                        |
 | `5`      | Bool - Логический тип.              |
 | `6`      | Array - Массив.                     |
-| `7`      | Guid - Универсальный уникальный идентификатор. |
+| `7`      | Guid - Уникальный идентификатор. |
 
 ### 2. Создание схемы данных потока
 - **URI**: /api/cl/stream-data/schemas
@@ -89,7 +88,7 @@
 
 ## Ресурс stream-data
 Данный ресурс предоставляет методы для работы с логами - событиями, их просмотр с фильтрацией и агрегацией, экспортов в файл.
-### `ССЫЛКА НА РЕАЛИЗАЦИЮ`
+### [ССЫЛКА НА РЕАЛИЗАЦИЮ](https://github.com/YusupovIlya/Software_architecture/blob/LabWork4/Lab%20Work%20%E2%84%964/src/Logging.Service.WebApi/Controllers/StreamDataController.cs)
 
 ## Методы
 
