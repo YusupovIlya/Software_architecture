@@ -54,7 +54,7 @@ pm.test("Response body is empty", function () {
 });
 ```
 ![img](https://github.com/YusupovIlya/Software_architecture/blob/LabWork4/Lab%20Work%20%E2%84%964/docs/images/schema2%20input%20and%20result.jpg)
-![img]()
+![img](https://github.com/YusupovIlya/Software_architecture/blob/LabWork4/Lab%20Work%20%E2%84%964/docs/images/schema3%20tests.jpg)
 
 ### 3. Обновление схемы данных потока
 - **URI**: /api/cl/stream-data/schemas
@@ -69,8 +69,8 @@ pm.test("Response body is empty", function () {
     pm.expect(pm.response.text()).to.be.empty;
 });
 ```
-![img](https://github.com/YusupovIlya/Software_architecture/blob/LabWork4/Lab%20Work%20%E2%84%964/docs/images/schema2%20input%20and%20result.jpg)
-![img](https://github.com/YusupovIlya/Software_architecture/blob/LabWork4/Lab%20Work%20%E2%84%964/docs/images/schema3%20tests.jpg)
+![img](https://github.com/YusupovIlya/Software_architecture/blob/LabWork4/Lab%20Work%20%E2%84%964/docs/images/schema4%20result.jpg)
+![img](https://github.com/YusupovIlya/Software_architecture/blob/LabWork4/Lab%20Work%20%E2%84%964/docs/images/schema4%20tests.jpg)
 
 ### 4. Удаление схемы данных потока
 - **URI**: /api/cl/stream-data/schemas/{streamId}
