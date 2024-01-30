@@ -1,4 +1,4 @@
-# Logging.Service.WebApi
+# Документация по API
 
 Версия API: 1.0
 
@@ -33,6 +33,20 @@
 | elementType | StreamDataSchemaColumnType (enum, nullable) | Тип элемента для коллекционных типов |
 | defaultValue| string (nullable)                      | Значение по умолчанию для колонки    |
 
+### Enum StreamDataSchemaColumnType
+
+Определяет типы колонок в схеме данных потока. Возможные значения:
+
+| Значение | Описание                            |
+|----------|-------------------------------------|
+| `0`      | Unknown - Неизвестный тип.          |
+| `1`      | Integer - Целое число.              |
+| `2`      | Double - Число с плавающей точкой.  |
+| `3`      | String - Строка.                    |
+| `4`      | Date - Дата.                        |
+| `5`      | Bool - Логический тип.              |
+| `6`      | Array - Массив.                     |
+| `7`      | Guid - Универсальный уникальный идентификатор. |
 
 ### 2. Создание схемы данных потока
 - **URI**: /api/cl/stream-data/schemas
@@ -62,6 +76,14 @@
 
 - **Ответы**:
   - **200 Success**: Успешное обновление схемы.
+  
+### 4. Удаление схемы данных потока
+- **URI**: /api/cl/stream-data/schemas/{streamId}
+- **Тип запроса**: DELETE
+- **Параметры**:
+  - `streamId` (path, integer, required): Идентификатор потока.
+- **Ответы**:
+  - **200 Success**: Успешное удаление схемы.
 
 
 
@@ -177,3 +199,7 @@
 | Свойство | Тип                    | Описание                        |
 |----------|------------------------|---------------------------------|
 | count    | integer (format: int64)| Количество событий              |
+
+## API в Swagger
+
+![img](https://github.com/YusupovIlya/Software_architecture/blob/LabWork4/Lab%20Work%20%E2%84%964/docs/images/swagger%20screen.jpg)
