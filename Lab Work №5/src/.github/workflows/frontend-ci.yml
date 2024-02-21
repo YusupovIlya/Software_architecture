@@ -1,0 +1,34 @@
+name: Frontend CI
+
+on:
+  push:
+    paths:
+      - 'Lab Work №5/src/logging-frontend/**'
+    branches: 
+      - master
+      - LabWork5
+  pull_request:
+    paths:
+      - 'Lab Work №5/src/logging-frontend/**'
+    branches: 
+      - master
+      - LabWork5
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+    - name: Install dependencies
+      run: npm install --legacy-peer-deps
+      working-directory: "./Lab Work №5/src/logging-frontend"
+    - name: Build
+      env:
+        CI: false
+      run: npm run build
+      working-directory: "./Lab Work №5/src/logging-frontend"
