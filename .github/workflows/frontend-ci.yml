@@ -5,13 +5,13 @@ on:
     paths:
       - 'Lab Work №5/src/logging-frontend/**'
     branches: 
-      - master
+      - main
       - LabWork5
   pull_request:
     paths:
       - 'Lab Work №5/src/logging-frontend/**'
     branches: 
-      - master
+      - main
       - LabWork5
 
 jobs:
