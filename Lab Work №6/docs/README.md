@@ -5,7 +5,7 @@
 
 ## Шаблоны проектирования GoF
 ### Порождающие шаблоны
-1. Фабричный метод
+#### 1. Фабричный метод
 ### [Абстрактный класс объектов, которые создает фабрика](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/FileService.cs)
 ### [Абстрактный класс фабрика объектов](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/FileFactories/FileFactory.cs)
 ### [Конкретный класс-создатель xlsx файлов](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/FileFactories/XlsxFactory.cs)
@@ -13,3 +13,9 @@
 ### [Сервис xlsx файлов](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/XlsxFileService.cs)
 ### [Сервис csv файлов](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/CsvFileService.cs)
 ![img](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/docs/images/factory_method.jpg)
+
+#### 2. Строитель
+### [Абстрактный класс - строитель](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/Builders/QueryBuilder.cs)
+### [Конкретный класс-строитель запросов ClickHouse](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/Builders/ClickHouseQueryBuilder.cs)
+### [Распорядитель - создает объект, используя объект Builder](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/Builders/ClickHouseQueryClient.cs)
+![img](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/docs/images/builder.jpg)
