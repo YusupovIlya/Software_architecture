@@ -12,4 +12,4 @@
 ### [Конкретный класс-создатель csv файлов](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/FileFactories/CsvFactory.cs)
 ### [Сервис xlsx файлов](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/XlsxFileService.cs)
 ### [Сервис csv файлов](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/CsvFileService.cs)
-![img](https://github.com/YusupovIlya/Software_architecture/blob/LabWork3/Lab%20Work%20%E2%84%963/docs/images/factory_method.jpg)
+![img](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/docs/images/factory_method.jpg)
