@@ -38,3 +38,18 @@
 #### [Интерфейс, который используется клиентом](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Interfaces/IStreamDataSchemasRepository.cs)
 #### [Клиент, который использует объекты IStreamDataSchemasRepository](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Controllers/StreamDataSchemasController.cs)
 ![img](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/docs/images/adapter.jpg)
+
+### 3. Фасад, предоставляет интерфейс для работы с различными типами логгеров
+#### [Класс-фасад, который предоставляет интерфейс клиентскому коду для работы с компонентами](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/Loggers/LoggingFacade.cs)
+#### [Компонент фасада, логирует в Postgres](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/Loggers/PostgresLogger.cs)
+#### [Компонент фасада, логирует в файл](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/Loggers/FileLogger.cs)
+#### [Компонент фасада, логирует в консоль](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/Loggers/ConsoleLogger.cs)
+#### [Клиентский код, взаимодействует с логгером-фасадом](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Program.cs)
+![img](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/docs/images/facade.jpg)
+
+### 4. Заместитель (прокси), предоставляет объект-заместитель, который управляет доступом к сервису выгрузки в xlsx, нужен для логирования самого события выгрузки в xlsx.
+#### [Класс-заместитель](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/XlsxFileServiceProxy.cs)
+#### [Сервис выгрузки в xlsx](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/XlsxFileService.cs)
+#### [Абстрактный класс для прокси и сервиса выгрузки в xlsx](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/FileService.cs)
+#### [Использует объект прокси для доступа к сервису выгрузки в xlsx](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Controllers/StreamDataController.cs)
+![img](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/docs/images/proxy.jpg)
