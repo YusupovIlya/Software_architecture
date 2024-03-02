@@ -6,6 +6,7 @@ public class XlsxFactory : FileFactory
 {
     public override FileService CreateService(string mimeType)
     {
-        return new XlsxFileService("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        var xlsService = new XlsxFileService("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        return new XlsxFileServiceProxy(xlsService.MimeType, xlsService);
     }
 }

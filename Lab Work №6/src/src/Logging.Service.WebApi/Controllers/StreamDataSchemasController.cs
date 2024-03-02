@@ -2,12 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Logging.Server.Models.StreamData.Api.Schemas;
-using Logging.Server.Service.StreamData.Services;
 using Monq.Core.MvcExtensions.Validation;
 using Monq.Core.MvcExtensions.ViewModels;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using static Monq.Core.BasicDotNetMicroservice.AuthConstants.AuthorizationScopes;
+using Logging.Service.WebApi.Services.Interfaces;
 
 namespace Logging.Server.Service.StreamData.Controllers
 {

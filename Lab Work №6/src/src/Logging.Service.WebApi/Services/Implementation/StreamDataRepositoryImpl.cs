@@ -9,23 +9,21 @@ using Logging.Server.Service.StreamData.Models;
 using Monq.Core.MvcExtensions.Extensions;
 using Logging.Server.StreamData.Validator.Models;
 using Monq.Models.Abstractions.v2;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using static Logging.Server.Service.StreamData.Configuration.AppConstants;
 using static Logging.Server.Service.StreamData.Configuration.AppConstants.ClickHouse;
+using Logging.Service.WebApi.Services;
+using ClickHouse.Client.ADO;
+using Logging.Service.WebApi.Services.Interfaces;
 
 namespace Logging.Server.Service.StreamData.Services.Implementation
 {
     /// <summary>
     /// Репозиторий для чтения потоковых данных.
     /// </summary>
-    public class StreamDataRepositoryImpl : BaseRepository, IStreamDataRepository
+    public class StreamDataRepositoryImpl : BaseRepository, IStreamDataRepository, ILogObserver
     {
         readonly ILogger<StreamDataRepositoryImpl> _logger;
         static readonly AggregationType[] _nonScalarAggregation =
@@ -43,8 +41,11 @@ namespace Logging.Server.Service.StreamData.Services.Implementation
         /// <param name="logger">Сервис логирования.</param>
         public StreamDataRepositoryImpl(
             IOptions<ClickHouseOptions> clickHouseOptions,
-            ILogger<StreamDataRepositoryImpl> logger) : base(clickHouseOptions) =>
+            ILogger<StreamDataRepositoryImpl> logger) : base(clickHouseOptions)
+        {
             _logger = logger;
+
+        }
 
         /// <summary>
         /// Получить список всех таблиц с потоками данных.
@@ -265,6 +266,8 @@ namespace Logging.Server.Service.StreamData.Services.Implementation
         public async Task<ulong> GetCount(long streamId)
         {
             var sql = $"SELECT COUNT() FROM {StreamDataTablePrefix}{streamId}";
+            ClickHouseConnection connection_f = ClickHouseDatabaseConnection.Instance;
+            await connection_f.ExecuteReaderAsync("SELECT * FROM logs_counters");
             await using var connection = GetConnection();
             try
             {
@@ -397,5 +400,10 @@ namespace Logging.Server.Service.StreamData.Services.Implementation
 
         static string UnionAll(IEnumerable<string> selections) =>
             string.Join(Environment.NewLine + "UNION ALL" + Environment.NewLine, selections);
+
+        public void Update(string log)
+        {
+            Console.WriteLine(log);
+        }
     }
 }

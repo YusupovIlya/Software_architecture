@@ -1,17 +1,14 @@
 ﻿using ClickHouse.Client;
 using ClickHouse.Client.ADO;
 using ClickHouse.Client.Utility;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Logging.Server.Models.StreamData.Api.Schemas;
 using Logging.Server.Service.StreamData.Configuration;
 using Logging.Server.Service.StreamData.Extensions;
 using Logging.Server.Service.StreamData.Models;
-using System;
-using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
+using Logging.Service.WebApi.Services.Interfaces;
 
 namespace Logging.Server.Service.StreamData.Services.Implementation
 {

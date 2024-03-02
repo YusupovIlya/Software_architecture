@@ -10,7 +10,6 @@ using Logging.Server.Service.StreamData.Configuration;
 using Logging.Server.Service.StreamData.Extensions;
 using Logging.Server.Service.StreamData.HttpServices;
 using Logging.Server.Service.StreamData.Models;
-using Logging.Server.Service.StreamData.Services;
 using Logging.Server.Service.StreamData.Services.Implementation;
 using Logging.Server.StreamData.Validator.Services.Implementation;
 using Monq.Core.MvcExtensions.Extensions;
@@ -23,6 +22,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Logging.Server.StreamData.Validator.Services;
 using static Monq.Core.BasicDotNetMicroservice.AuthConstants.AuthorizationScopes;
+using Logging.Service.WebApi.Services.Implementation.Builders;
+using Logging.Service.WebApi.Services.Interfaces;
+using Logging.Service.WebApi.Services.Implementation;
+using DocumentFormat.OpenXml.InkML;
+using Logging.Service.WebApi.Services.Implementation.Strategies;
+using Logging.Service.WebApi.Services;
 
 namespace Logging.Server.Service.StreamData.Controllers
 {
@@ -89,9 +94,14 @@ namespace Logging.Server.Service.StreamData.Controllers
             if (value.Timestamp.Start > value.Timestamp.End)
                 (value.Timestamp.Start, value.Timestamp.End) = (value.Timestamp.End, value.Timestamp.Start);
 
+            IStringProcessingStrategy stringProcessingStrategy = new RemoveDigitsStrategy();
+            var queryProcessed = ProcessingQuery(value.Query, stringProcessingStrategy);
+
             var schemas = await GetSchemas(_streams);
             var parser = _parserBuilder.Create();
+            var queryCondition = new ClickHouseQueryClient(new ClickHouseQueryBuilder()).ConstructQuery();
             var schemasQueries = GetSchemasQueries(value.Query, parser, schemas);
+
 
             var events = await _streamDataRepository.GetEventsByFilter(schemasQueries, parser.Parameters, value.Timestamp, value.FilteredCount, timestampSortDir);
             var aggregations = await _streamDataRepository.GetAggregationsByFilter(schemasQueries, parser.Parameters, value.Timestamp, value.Interval);
@@ -123,12 +133,21 @@ namespace Logging.Server.Service.StreamData.Controllers
             [FromQuery][Required] string type,
             [FromQuery] string timestampSortDir = DefaultSortDir)
         {
+            IStringProcessingStrategy stringProcessingStrategy = new RemovePunctuationStrategy();
+            var queryProcessed = ProcessingQuery(value.Query, stringProcessingStrategy);
+
+            Logger loggerChain = new Logger();
+            loggerChain.Log($"Request: {value.Query}", LogLevel.Information);
+
             if (value.Timestamp.Start > value.Timestamp.End)
                 (value.Timestamp.Start, value.Timestamp.End) = (value.Timestamp.End, value.Timestamp.Start);
 
             var fileService = FileServiceFactory.Create(type);
             if (fileService is null)
+            {
+                loggerChain.Log($"File type doesnt exist: {type}", LogLevel.Warning);
                 return BadRequest(new ErrorResponseViewModel("Файл не корректен!"));
+            }
 
             //var permittedStreamIds = await GetPermittedStreamIds(value.StreamIds);
             //if (permittedStreamIds.IsEmpty())
@@ -236,6 +255,12 @@ namespace Logging.Server.Service.StreamData.Controllers
             IEnumerable<StreamDataSchemaViewModel> schemas,
             IDictionary<long, IEnumerable<string>>? schemaFields = null)
         {
+            LogPublisher publisher = new LogPublisher();
+
+            // Подписываем наблюдателя на издателя
+            publisher.Subscribe(new StreamDataRepositoryImpl(null, null));
+            publisher.PublishLog($"{nameof(StreamDataRepositoryImpl)} is subscriber");
+
             if (string.IsNullOrWhiteSpace(query))
                 return schemaFields is null
                     ? schemas.Select(val => new Schema { TableName = val.StreamId.ToTableName() }).ToList()
@@ -276,5 +301,7 @@ namespace Logging.Server.Service.StreamData.Controllers
             };
             return result;
         }
+
+        private string ProcessingQuery(string query, IStringProcessingStrategy strategy) => strategy.ProcessString(query);
     }
 }

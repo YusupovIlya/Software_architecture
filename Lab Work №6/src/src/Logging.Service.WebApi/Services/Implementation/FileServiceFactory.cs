@@ -1,4 +1,6 @@
-﻿namespace Logging.Server.Service.StreamData.Services.Implementation
+﻿using Logging.Service.WebApi.Services.Implementation.FileFactories;
+
+namespace Logging.Server.Service.StreamData.Services.Implementation
 {
     /// <summary>
     /// Фабрика по созданию сервисов формирования файлов.
@@ -12,8 +14,8 @@
         public static FileService? Create(string? type) =>
             type switch
             {
-                "csv" => new CsvFileService("text/csv"),
-                "xlsx" => new XlsxFileService("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"),
+                "csv" => new CsvFactory().CreateService("text/csv"),
+                "xlsx" => new XlsxFactory().CreateService("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"),
                 _ => null
             };
     }
