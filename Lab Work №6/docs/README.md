@@ -31,6 +31,7 @@
 #### [Конкретная реализация компонента, в которую с помощью декоратора добавляется новая функциональность](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/Logger.cs)
 #### [Конкретная реализация декоратора, который представляет дополнительную функциональность для логирования по условию и уровню лога](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/Decorator/ConditionalLoggerDecorator.cs)
 #### [Конкретная реализация декоратора, который представляет дополнительную функциональность для логирования по определенному уровню лога](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/Decorator/LogLevelFilterDecorator.cs)
+![img](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/docs/images/decorator.jpg)
 
 ### 2. Адаптер. Используется для преобразования интерфейса класса PostgresDatabaseRepository в интерфейс IStreamDataSchemasRepository.
 #### [Адаптируемый класс](https://github.com/YusupovIlya/Software_architecture/blob/LabWork6/Lab%20Work%20%E2%84%966/src/src/Logging.Service.WebApi/Services/Implementation/Adapter/PostgresDatabaseRepository.cs)
